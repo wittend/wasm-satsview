@@ -5,6 +5,10 @@ projects satellites and renders SVG; a small TypeScript wrapper supplies the
 browser API, hover/focus details, and lifecycle management. No runtime JavaScript
 dependencies, framework, or generated binding toolchain required.
 
+![The wasm-satsview harness showing a north-up satellite sky plot, display controls, and receiver input settings](docs/_static/harness.png)
+
+The harness displaying simulated GNSS signals.
+
 - North-up by default, with N/E/S/W outside the sky circle; optional rotation.
 - Horizon at the rim, zenith at the center, optional elevation rings.
 - Satellite circles: constellation-colored outlines and C/N0-colored fills.

@@ -7,6 +7,7 @@ The initial development version is 0.1.0; no release has been published yet.
 
 ### Added
 
+- Harness screenshot in the README, captured with simulated GNSS signals.
 - Rust/WASM sky projection and SVG rendering with north-up orientation and
   optional compass labels, grid, IDs, rotation, and elevation/use filters.
 - Constellation outlines, C/N0 fills, and explicit 2D/3D/no-fix/unknown LEDs.
