@@ -1,0 +1,26 @@
+name: CI
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: https://github.com/actions/checkout@v4
+      - uses: https://github.com/actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: https://github.com/dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+          components: rustfmt, clippy
+      - uses: https://github.com/actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - run: pip install -r docs/requirements.txt
+      - run: sphinx-build -W --keep-going -b html docs docs/_build/html

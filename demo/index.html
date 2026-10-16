@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>wasm-satsview · GNSS sky monitor</title><link rel="stylesheet" href="/demo/style.css"></head>
+<body>
+<header><a class="brand" href="/">◉ <span>wasm<span class="muted">/</span>satsview</span></a><span class="tag">GNSS INSTRUMENTS / 01</span></header>
+<main>
+<div class="intro"><div><p class="eyebrow">SATELLITE VISIBILITY</p><h1>Your window to the sky.</h1><p class="muted">A WebAssembly sky plot for multi-constellation GNSS receivers.</p></div><span class="badge" id="source">SIMULATED DATA</span></div>
+<div class="workspace"><section class="instrument"><div class="section-head"><h2>Sky view</h2><span id="orientation">NORTH UP · 0°</span></div><div id="sky"></div><div class="legend"><span>Signal C/N0</span><span><i class="red"></i>&lt;20</span><span><i class="amber"></i>20–34</span><span><i class="green"></i>≥35 dB-Hz</span><span><i class="gray"></i>Unknown</span></div><p class="hint">Outline = constellation · Solid = used in fix · Hover or tab to inspect</p></section>
+<aside>
+<section class="panel"><div class="section-head"><h2>Display controls</h2><span>CONFIGURE</span></div><div id="toggles"></div><label class="field">Minimum elevation <output id="elevation-value">0°</output><input id="elevation" type="range" min="0" max="90" value="0"></label><label class="field">Bearing at top<select id="rotation"><option value="0">North · 0°</option><option value="90">East · 90°</option><option value="180">South · 180°</option><option value="270">West · 270°</option></select></label></section>
+<section class="panel"><h2>Receiver input</h2><label class="field">Position lock (simulation / JSON)<select id="fix"><option value="3d">3D fix</option><option value="2d">2D fix</option><option value="none">No fix</option><option value="unknown">Unknown</option></select></label><div class="buttons"><button id="pause">Pause simulation</button><button id="reset" class="secondary">Reset demo</button></div><details><summary>Load receiver JSON</summary><textarea id="json" aria-label="Receiver JSON" rows="5" placeholder='{"satellites": [...], "fix": "3d"}'></textarea><button id="apply">Apply snapshot</button></details><details><summary>Connect WebSocket bridge</summary><p class="hint">Normalized JSON snapshots or gpsd SKY / TPV objects. One device per connection. Stream becomes stale after 10 seconds without a valid update.</p><input id="endpoint" aria-label="WebSocket URL" placeholder="ws://localhost:8765"><div class="buttons"><button id="connect">Connect</button><button id="disconnect" class="secondary">Disconnect</button></div></details><p id="status" role="status">Loading WASM…</p></section>
+<section class="panel"><h2>Constellations</h2><div class="constellations" id="constellations"></div></section>
+</aside></div>
+<section class="panel inventory"><div class="section-head"><h2>Received signals</h2><span id="count"></span></div><div class="table-wrap"><table><thead><tr><th>Satellite</th><th>Constellation</th><th>Signal</th><th>Azimuth</th><th>Elevation</th><th>C/N0</th><th>Used in fix</th></tr></thead><tbody id="signals"></tbody></table></div></section>
+</main><footer>wasm-satsview <span>0.1.0 · MIT LICENSE · RUST + WEBASSEMBLY</span></footer>
+<script type="module" src="/demo/main.js"></script>
+</body></html>
